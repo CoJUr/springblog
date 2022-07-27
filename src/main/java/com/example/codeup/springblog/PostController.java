@@ -16,7 +16,7 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     @ResponseBody
-    public String returnID(@PathVariable String id) {
+    public String returnID(@PathVariable long id) {
         return "You want to go to post #: " + id;
     }
 
