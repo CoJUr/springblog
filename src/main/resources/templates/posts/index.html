@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<nav th:replace="partials/partials.html :: nav2"></nav>
+
+<h1 th:replace="partials/partials.html :: MainHeader"></h1>
+
+<h3> Here are all the posts</h3>
+
+<ul>
+    <li th:if="${post.title}" th:each="post : ${posts}">
+        <h5 th:text="${post.title}"></h5>
+        <p th:text="${post.body}"></p>
+    </li>
+</ul>
+
+</body>
+</html>

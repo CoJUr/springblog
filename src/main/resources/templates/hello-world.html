@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="partials/partials.html :: head('Hellow World')"></head>
 <body>
 
+<nav th:replace="partials/partials.html :: nav"></nav>
 
-<h1>Hello world <span th:text="${name}">Frank</span></h1>
+<h3 th:text="${name}">Fred</h3>
+<h1>Hello worl- er I mean <span th:text="${name}">Frank</span></h1>
 
+<footer th:replace="partials/partials.html :: footer"></footer>
 
 </body>
 </html>

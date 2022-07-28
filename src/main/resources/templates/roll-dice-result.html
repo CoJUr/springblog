@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:replace="partials/partials.html :: nav2"> Wont see this</nav>
+
+<h1>You guessed <span th:text="${die}">Roll</span></h1>
+<h1>The random number was actually <span th:text="${roll}">Roll</span></h1>
+<p th:if="${die == roll}">You won!</p>
+
+
+
+
+<footer th:insert="partials/partials.html :: foota">
+    <p> where does the text go?</p>
+</footer>
+<p>iApple™   we will sue </p>
+</body>
+</html>
