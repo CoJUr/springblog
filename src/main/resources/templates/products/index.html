@@ -10,7 +10,7 @@
 <h1 >Here are all the Products</h1>
 
 <ul>
-    <li th:if="${product.priceInCents < 10000}" th:each="product : ${products}">
+    <li th:each="product : ${products}">
         <p  th:text="${product.name} + ' costs ' + ${product.priceInCents} + ' cents '"></p>
     </li>
 </ul>
