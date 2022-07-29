@@ -12,6 +12,13 @@ public class SpringblogApplication {
         SpringApplication.run(SpringblogApplication.class, args);
     }
 
+    @Bean
+    public CommandLineRunner run(ProductRepository productDao) {
+        return args -> {
+            productDao.findProductByNameContaining("Topi");
+        };
+    }
+
 //
 //    @Bean
 //    public CommandLineRunner run(EmployeeRepository repository) {

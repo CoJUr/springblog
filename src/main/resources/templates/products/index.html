@@ -12,6 +12,7 @@
 <ul>
     <li th:each="product : ${products}">
         <p  th:text="${product.name} + ' costs ' + ${product.priceInCents} + ' cents '"></p>
+
     </li>
 </ul>
 

@@ -1,6 +1,5 @@
 package com.example.codeup.springblog;
 
-import com.example.codeup.springblog.repositories.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
