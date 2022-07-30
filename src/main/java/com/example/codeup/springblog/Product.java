@@ -14,6 +14,7 @@ public class Product {
     private String name;
 
 
+    @Column(name= "price_in_cents")
     private int priceInCents;
 
     public Product(String name, int priceInCents) {

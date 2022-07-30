@@ -36,13 +36,13 @@ public class HelloController {
         return number + " plus one is " + (number + 1) + "!";
     }
 
-    @RequestMapping("/showForm")
-    public String showForm() {
-        return "helloworld-form";
-    }
-
-    @RequestMapping("/processForm")
-    public String processForm(HttpRequest request, Model model) {
-        return "helloworld.jsp";
-    }
+//    @RequestMapping("/showForm")
+//    public String showForm() {
+//        return "helloworld-form";
+//    }
+//
+//    @RequestMapping("/processForm")
+//    public String processForm(HttpRequest request, Model model) {
+//        return "helloworld.jsp";
+//    }
 }
