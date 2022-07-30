@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,5 +65,19 @@ public class ProductController {
         productDao.findById(id).get();
         return "redirect:/products";
     }
+
+//    @GetMapping("/objects")
+//    public List<Product> getObjects() {
+//        return productDao.findAll();
+//    }
+//
+//    @GetMapping("/admins")
+//    public List<Product> admins() {
+//        new RestTemplate().getForObject("http://localhost:8080/products", Product[].class);
+//
+//        return productDao.findAll();
+////         see in "http-client" type
+//    }
+
 
 }
