@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 public class PostController {
 
-    private PostRepository postDao;
+    PostRepository postDao;
 
     public PostController(PostRepository postDao) {
         this.postDao = postDao;
@@ -47,10 +47,12 @@ public class PostController {
     }
 
 
-    @PostMapping("/posts/create")
-    public String createPost(Post post) {
+    @PostMapping("/create/test")
+    public String createPost(String title, String body, Model model) {
+
+        Post post = new Post(title, body);
         postDao.save(post);
-        return "redirect:/posts";
+        return "redirect:/products";
     }
 
 

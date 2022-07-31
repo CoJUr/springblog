@@ -23,14 +23,15 @@ public class ProductController {
 //    get all records with JPA
     @GetMapping("/products")
     public String showAllProducts(Model model) {
+        List<Product> productsList = productDao.findAll();
 
-        List<Product> products = productDao.findAll();
-        List<Product> productsList = new ArrayList<>(Arrays.asList(
-                new Product("Hammer", 1000),
-                new Product("Nail", 100),
-                new Product("Screwdriver", 200),
-                new Product("Wrench", 300)
-        ));
+            //        List<Product> productsList = new ArrayList<>(Arrays.asList(
+            //                new Product("Hammer", 1000),
+            //                new Product("Nail", 100),
+            //                new Product("Screwdriver", 200),
+            //                new Product("Wrench", 300)
+            //        ));
+
 //        passing products array to view
         model.addAttribute("products", productsList);
         return "products/index";

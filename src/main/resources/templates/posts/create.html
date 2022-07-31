@@ -8,17 +8,17 @@
 
 <h1>Create a post</h1>
 
-<form action="@{/posts/create}" method="post">
+<form th:action="@{/create/test}" method="post">
     <fieldset>
 
         <legend> Post details:</legend>
         <label for="title">Title</label>
         <input type="text" name="title" id="title">
         <br><br>
-        <label for="content">Content</label>
+        <label for="body">Content</label>
         <br>
-        <textarea name="content" id="content" cols="25" rows="20"></textarea>
-        <input type="submit" value="Create">
+        <textarea name="body" id="body" cols="25" rows="20"></textarea>
+        <input type="submit" value="submit">
     </fieldset>
 </form>
 
