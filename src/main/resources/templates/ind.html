@@ -2,11 +2,15 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="#{ind.page.title}">Page Title</title>
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"
           media="screen"/>
 
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
+<!--    th:src="@{/js/jquery-3.6.0.min.js}"-->
+
+<!--    <link th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>-->
+
 
     <style>
 
@@ -122,14 +126,14 @@
 <div class="jumbotron">
     <div class="container">
         <h1>Hello, world!</h1>
-        <p class="lead">Online blog with Thymeleaf</p>
+        <p class="lead" th:text="#{ind.courses.tagline}">Tag line</p>
     </div>
 </div>
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Spring framework HOOPLAH</h1>
+            <h1 th:text="#{ind.courses.headline}">COURSES HEADLINE</h1>
         </div>
     </div>
 
