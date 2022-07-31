@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Creation!</title>
+</head>
+<body>
+
+<h1>Create a post</h1>
+
+<form action="@{/posts/create}" method="post">
+    <fieldset>
+
+        <legend> Post details:</legend>
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title">
+        <br><br>
+        <label for="content">Content</label>
+        <br>
+        <textarea name="content" id="content" cols="25" rows="20"></textarea>
+        <input type="submit" value="Create">
+    </fieldset>
+</form>
+
+
+</body>
+</html>

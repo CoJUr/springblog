@@ -25,7 +25,6 @@ public class ProductController {
     public String showAllProducts(Model model) {
 
         List<Product> products = productDao.findAll();
-
         List<Product> productsList = new ArrayList<>(Arrays.asList(
                 new Product("Hammer", 1000),
                 new Product("Nail", 100),
@@ -53,11 +52,14 @@ public class ProductController {
 //        productDao.deleteById(id);
 //        return "redirect:/products";
 //    }
+
+
     @GetMapping("/products/delete/{id}")
     public String deleteProduct(@PathVariable long id) {
         productDao.deleteById(id);
         return "redirect:/products";
     }
+
 
 //    show/get a specific record with JPA
     @GetMapping("/products/test/{id}")
@@ -65,6 +67,7 @@ public class ProductController {
         productDao.findById(id).get();
         return "redirect:/products";
     }
+
 
 //    @GetMapping("/objects")
 //    public List<Product> getObjects() {

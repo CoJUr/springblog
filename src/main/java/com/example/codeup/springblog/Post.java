@@ -59,5 +59,12 @@ public class Post {
         this.id = id;
     }
 
-
+    @Override
+    public String toString() {
+        return "Post{" +
+                "title='" + title + '\'' +
+                ", id=" + id +
+                ", body='" + body + '\'' +
+                '}';
+    }
 }

@@ -13,6 +13,12 @@ import java.util.List;
 
 @Controller
 public class PostController {
+
+    private PostRepository postDao;
+
+    public PostController(PostRepository postDao) {
+        this.postDao = postDao;
+    }
     @GetMapping("/posts")
     public String returnIndex(Model model) {
         List<Post> postsList = new ArrayList<>(Arrays.asList(
@@ -20,7 +26,6 @@ public class PostController {
                 new Post("Buying junk", 2, "This is a post about buying junk"),
                 new Post("Will work for food", 3, "This is a post about working for food")
         ));
-
         model.addAttribute("posts", postsList);
         return "posts/index";
     }
@@ -37,16 +42,15 @@ public class PostController {
 
 
     @GetMapping("/posts/create")
-    @ResponseBody
     public String viewCreationForm() {
-        return "Look at how to make a post here: ";
+        return "posts/create";
     }
 
 
     @PostMapping("/posts/create")
-    @ResponseBody
-    public String createPost() {
-        return "Create a new post here: ";
+    public String createPost(Post post) {
+        postDao.save(post);
+        return "redirect:/posts";
     }
 
 
