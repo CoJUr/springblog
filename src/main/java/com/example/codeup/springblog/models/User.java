@@ -14,25 +14,30 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, columnDefinition = "VARCHAR(150)")
+    @Column(nullable = false, columnDefinition = "VARCHAR(150)", unique= true)
     private String username;
 
-    @Column(columnDefinition = "VARCHAR(150)")
+    @Column(columnDefinition = "VARCHAR(150)", unique = true)
     private String email;
 
     @Column(columnDefinition = "VARCHAR(150)")
     private String password;
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Post> post = new ArrayList<>();
 
-    public User(long id, String username, String email, String password, List<Post> post) {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Post> posts = new ArrayList<>();
+
+    public User(long id, String username, String email, String password, List<Post> posts) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.post = post;
+        this.posts = posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     public User(long id, String username, String email, String password) {
@@ -43,12 +48,12 @@ public class User {
 
     }
 
-    public List<Post> getAd() {
-        return post;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public void setPost(List<Post> post) {
-        this.post = post;
+    public void setPost(List<Post> posts) {
+        this.posts = posts;
     }
 
     public User() {}

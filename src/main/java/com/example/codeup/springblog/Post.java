@@ -31,6 +31,7 @@ public class Post {
     }
 
 
+
     public User getUser() {
         return user;
     }

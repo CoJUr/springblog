@@ -1,5 +1,6 @@
 package com.example.codeup.springblog;
 
+import com.example.codeup.springblog.models.User;
 import com.example.codeup.springblog.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,6 @@ public class PostController {
     public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
         this.userDao = userDao;
-
     }
 
     @GetMapping("/posts")
@@ -41,7 +41,7 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String returnID(@PathVariable long id, Model model) {
 
-        Post post = new Post("My first post", id, "No seriously it is");
+        Post post = postDao.findById(id).get();
         model.addAttribute("id", id);
         model.addAttribute("post", post);
 
@@ -59,6 +59,9 @@ public class PostController {
     public String createPost(@RequestParam String title, @RequestParam String body, Model model) {
 
         Post post = new Post(title, body);
+//        User user = userDao.findById(1L).get();
+//        hard coding for now
+
         post.setTitle(title);
         post.setBody(body);
         post.setUser(userDao.findById(1L).get());
