@@ -1,5 +1,6 @@
 package com.example.codeup.springblog.models;
 
+import com.example.codeup.springblog.Post;
 import com.example.codeup.springblog.models.Ad;
 
 import javax.persistence.*;
@@ -24,14 +25,14 @@ public class User {
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Ad> ad = new ArrayList<>();
+    private List<Post> post = new ArrayList<>();
 
-    public User(long id, String username, String email, String password, List<Ad> ad) {
+    public User(long id, String username, String email, String password, List<Post> post) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.ad = ad;
+        this.post = post;
     }
 
     public User(long id, String username, String email, String password) {
@@ -42,12 +43,12 @@ public class User {
 
     }
 
-    public List<Ad> getAd() {
-        return ad;
+    public List<Post> getAd() {
+        return post;
     }
 
-    public void setAd(List<Ad> ad) {
-        this.ad = ad;
+    public void setPost(List<Post> post) {
+        this.post = post;
     }
 
     public User() {}

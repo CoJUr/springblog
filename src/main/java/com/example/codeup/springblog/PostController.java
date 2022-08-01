@@ -59,6 +59,9 @@ public class PostController {
     public String createPost(@RequestParam String title, @RequestParam String body, Model model) {
 
         Post post = new Post(title, body);
+        post.setTitle(title);
+        post.setBody(body);
+        post.setUser(userDao.findById(1L).get());
 //        if the id associated already exists, .save will update that post
         postDao.save(post);
         System.out.println(post.toString());

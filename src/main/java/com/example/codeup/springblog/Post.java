@@ -1,5 +1,7 @@
 package com.example.codeup.springblog;
 
+import com.example.codeup.springblog.models.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,26 @@ public class Post {
 
     @Column(nullable=true, columnDefinition = "VARCHAR(255)")
     private String body;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public Post(String title, long id, String body, User user) {
+        this.title = title;
+        this.id = id;
+        this.body = body;
+        this.user = user;
+    }
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Post(String title, long id) {
         this.title = title;
