@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Controller
 public class PostController {
@@ -47,13 +48,30 @@ public class PostController {
     }
 
 
-    @PostMapping("/create/test")
+    @PostMapping("/posts/create/test")
     public String createPost(String title, String body, Model model) {
 
         Post post = new Post(title, body);
         postDao.save(post);
-        return "redirect:/products";
+        System.out.println(post.toString());
+        return "redirect:/posts";
     }
+
+//    post read functionality
+    @GetMapping("/posts/read/{id}")
+    public String readPost(@PathVariable long id, Model model) throws NoSuchElementException {
+        try{
+            Post post = postDao.findById(id).get();
+            model.addAttribute("post", post);
+
+        } catch (NoSuchElementException e) {
+//            throw new NoSuchElementException("No post found with id: " + id);
+//            alert('No post found with id: ' + id);
+            return "redirect:/posts";
+        }
+        return "posts/show";
+    }
+
 
 
 }
