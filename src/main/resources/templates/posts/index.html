@@ -14,6 +14,10 @@
 
 <ul>
     <li th:if="${post.title}" th:each="post : ${posts}">
+
+<!--        <a th:href="@{/posts/{id}(id=${post.id})}"></a>-->
+
+
         <h5 th:text="${post.title}"></h5>
         <p th:text="${post.body}"></p>
     </li>

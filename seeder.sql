@@ -50,3 +50,6 @@ insert into products (name, price_in_cents) values ('Southern sea lion', 7218);
 insert into products (name, price_in_cents) values ('Kudu, greater', 1976);
 insert into products (name, price_in_cents) values ('Arctic fox', 9086);
 insert into products (name, price_in_cents) values ('Lappet-faced vulture', 1968);
+
+
+insert into users (id, email, password, username) values (1, 'domo@email.com', 'password', 'domo');

@@ -1,11 +1,9 @@
 package com.example.codeup.springblog;
 
+import com.example.codeup.springblog.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,9 +15,14 @@ public class PostController {
 
     PostRepository postDao;
 
-    public PostController(PostRepository postDao) {
+    private UserRepository userDao;
+
+    public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
+
     }
+
     @GetMapping("/posts")
     public String returnIndex(Model model) {
         List<Post> postsList = new ArrayList<>();
@@ -29,6 +32,7 @@ public class PostController {
 //                new Post("Buying junk", 2, "This is a post about buying junk"),
 //                new Post("Will work for food", 3, "This is a post about working for food")
 //        ));
+
         postsList = postDao.findAll();
         model.addAttribute("posts", postsList);
         return "posts/index";
@@ -52,9 +56,10 @@ public class PostController {
 
 
     @PostMapping("/posts/create/test")
-    public String createPost(String title, String body, Model model) {
+    public String createPost(@RequestParam String title, @RequestParam String body, Model model) {
 
         Post post = new Post(title, body);
+//        if the id associated already exists, .save will update that post
         postDao.save(post);
         System.out.println(post.toString());
         return "redirect:/posts";
