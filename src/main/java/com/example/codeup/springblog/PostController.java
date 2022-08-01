@@ -22,11 +22,14 @@ public class PostController {
     }
     @GetMapping("/posts")
     public String returnIndex(Model model) {
-        List<Post> postsList = new ArrayList<>(Arrays.asList(
-                new Post("Selling junk", 1, "This is a post about selling junk"),
-                new Post("Buying junk", 2, "This is a post about buying junk"),
-                new Post("Will work for food", 3, "This is a post about working for food")
-        ));
+        List<Post> postsList = new ArrayList<>();
+
+//                new ArrayList<>(Arrays.asList(
+//                new Post("Selling junk", 1, "This is a post about selling junk"),
+//                new Post("Buying junk", 2, "This is a post about buying junk"),
+//                new Post("Will work for food", 3, "This is a post about working for food")
+//        ));
+        postsList = postDao.findAll();
         model.addAttribute("posts", postsList);
         return "posts/index";
     }
