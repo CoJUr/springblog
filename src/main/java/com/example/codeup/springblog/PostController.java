@@ -42,10 +42,12 @@ public class PostController {
         model.addAttribute("id", id);
         model.addAttribute("post", post);
 
+        System.out.println(postDao.findById(3L).get());
         return "posts/show";
     }
 
 
+//    editing post functionality
     @GetMapping("/posts/{id}/edit")
     public String sendEditForm(@PathVariable long id, Model model) {
 
@@ -55,7 +57,6 @@ public class PostController {
 
         return "posts/edit";
     }
-
     @PostMapping("/posts/{id}/edit")
     public String executeEditForm(@ModelAttribute Post post, @PathVariable long id) {
 
