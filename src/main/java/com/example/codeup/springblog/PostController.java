@@ -46,20 +46,41 @@ public class PostController {
     }
 
 
+    @GetMapping("/posts/{id}/edit")
+    public String sendEditForm(@PathVariable long id, Model model) {
+
+        Post post = postDao.findById(id).get();
+        model.addAttribute("id", id);
+        model.addAttribute("post", post);
+
+        return "posts/edit";
+    }
+
+    @PostMapping("/posts/{id}/edit")
+    public String executeEditForm(@ModelAttribute Post post, @PathVariable long id) {
+
+        postDao.save(post);
+
+        return "posts/edit";
+    }
+
+
     @GetMapping("/posts/create")
-    public String viewCreationForm() {
+    public String viewCreationForm(Model model) {
+        model.addAttribute("post", new Post());
         return "posts/create";
     }
 
 
-    @PostMapping("/posts/create/test")
-    public String createPost(@RequestParam String title, @RequestParam String body, Model model) {
+    @PostMapping("/posts/create")
+    public String createPost(@ModelAttribute Post post) {
 
-        Post post = new Post(title, body );
-
+//        Post post = new Post(title, body );
 //        load up the post and send it to the DB
-        post.setTitle(title);
-        post.setBody(body);
+//        post.setTitle(title);
+//        post.setBody(body);
+
+//        postDao.save(post);
         post.setUser(userDao.findById(1L).get());
 //        note: if the id associated already exists, .save will update that post
         postDao.save(post);
