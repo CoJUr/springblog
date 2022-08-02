@@ -6,10 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 @Controller
 public class PostController {
@@ -58,14 +55,13 @@ public class PostController {
     @PostMapping("/posts/create/test")
     public String createPost(@RequestParam String title, @RequestParam String body, Model model) {
 
-        Post post = new Post(title, body);
-//        User user = userDao.findById(1L).get();
-//        hard coding for now
+        Post post = new Post(title, body );
 
+//        load up the post and send it to the DB
         post.setTitle(title);
         post.setBody(body);
         post.setUser(userDao.findById(1L).get());
-//        if the id associated already exists, .save will update that post
+//        note: if the id associated already exists, .save will update that post
         postDao.save(post);
         System.out.println(post.toString());
         return "redirect:/posts";
@@ -75,10 +71,11 @@ public class PostController {
     @GetMapping("/posts/read/{id}")
     public String readPost(@PathVariable long id, Model model) throws NoSuchElementException {
         try{
-            Post post = postDao.findById(id).get();
-            model.addAttribute("post", post);
-
+            Optional<Post> post = postDao.findById(id);
+            if (post.isPresent()) model.addAttribute("post", post);
+            else throw new NoSuchElementException();
         } catch (NoSuchElementException e) {
+
 //            throw new NoSuchElementException("No post found with id: " + id);
 //            alert('No post found with id: ' + id);
             return "redirect:/posts";
