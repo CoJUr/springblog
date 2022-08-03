@@ -2,8 +2,7 @@ package com.example.codeup.springblog;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -39,11 +38,17 @@ public class ProductController {
 
 
     //    save and create a product with JPA
-    @GetMapping("/products/create/test")
-    public String createProducts() {
-        Product product = new Product("Pug", 100000);
-        productDao.save(product);
+    @GetMapping("/products/create")
+    public String createProducts(Model model) {
+        model.addAttribute("newProduct", new Product());
 
+        return "products/create";
+    }
+
+    @PostMapping("/products/create")
+    public String submitProduct(@ModelAttribute Product product) {
+
+        productDao.save(product);
         return "redirect:/products";
     }
 
