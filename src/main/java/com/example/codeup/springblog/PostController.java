@@ -2,6 +2,7 @@ package com.example.codeup.springblog;
 
 import com.example.codeup.springblog.models.User;
 import com.example.codeup.springblog.repositories.UserRepository;
+import com.example.codeup.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,12 @@ public class PostController {
 
     private UserRepository userDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+    private final EmailService emailService;
+
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -55,15 +59,18 @@ public class PostController {
         model.addAttribute("id", id);
         model.addAttribute("post", post);
 
-        return "posts/edit";
+        return "redirect:/posts/{id}";
     }
     @PostMapping("/posts/{id}/edit")
     public String executeEditForm(@ModelAttribute Post post, @PathVariable long id) {
 
+        User user = userDao.findById(1L).get();
+        post.setUser(user);
         postDao.save(post);
 
         return "posts/edit";
     }
+
 
 
     @GetMapping("/posts/create")
@@ -74,7 +81,7 @@ public class PostController {
 
 
     @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post) {
+    public String createPost(@ModelAttribute Post newPost) {
 
 //        Post post = new Post(title, body );
 //        load up the post and send it to the DB
@@ -82,10 +89,11 @@ public class PostController {
 //        post.setBody(body);
 
 //        postDao.save(post);
-        post.setUser(userDao.findById(1L).get());
+        newPost.setUser(userDao.findById(1L).get());
 //        note: if the id associated already exists, .save will update that post
-        postDao.save(post);
-        System.out.println(post.toString());
+        postDao.save(newPost);
+        System.out.println(newPost.toString());
+        emailService.prepareAndSend(newPost, "New Post created");
         return "redirect:/posts";
     }
 
