@@ -5,6 +5,8 @@
     <title>Title</title>
 </head>
 <body>
+<nav th:replace="partials/partials.html :: nav2"> Wont see this</nav>
+
 <main class="container">
     <form th:action="@{/products/create}" th:method="POST" th:object="${newProduct}">
         <div class="mb-3">

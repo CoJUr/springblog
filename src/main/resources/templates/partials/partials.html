@@ -1,10 +1,17 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head th:fragment="head(title)" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
     <meta charset="UTF-8">
-    <title th:text="${'My Blog |' + title}"></title>
+    <title th:text="${'My Blog | ' + title}"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
+
+<header th:fragment="header(text)" class="container">
+    <h1 class="text-center display-4 my-4" th:text="${text}"></h1>
+</header>
 
 <!--<head th:fragment=""></head>-->
 
@@ -23,7 +30,8 @@
 <nav th:fragment="nav3" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a href="/" class="navbar-brand">Spring Blog</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                ariat-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -32,7 +40,7 @@
                     <a class="nav-link" href="/posts">Posts</a>
                 </li>
 
-                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                <li sec:authorize="isAuthenticated()" class="nav-item">
                     <a class="nav-link" href="/posts/create">Write Post</a>
                 </li>
 
@@ -42,13 +50,12 @@
                 <li sec:authorize="!isAuthenticated()" class="nav-item">
                     <a class="nav-link" href="/login">Login</a>
                 </li>
-                <li sec:authorize="!isAuthenticated()" class="navi-item">
-                    <a class="nav-link" href="/logout">Logout</a>
-                </li>
+<!--                <li sec:authorize="!isAuthenticated()" class="navi-item">-->
+<!--                    <a class="nav-link" href="/logout">Logout</a>-->
+<!--                </li>-->
                 <li class="nav-item" sec:authorize="isAuthenticated()">
                     <form th:action="@{/logout}" th:method="post">
-                        <input type="submit" value="Logout">
-                        <button>Logout</button>
+                        <button type="button">Logout</button>
                     </form>
                 </li>
 
@@ -63,6 +70,8 @@
 <h1 th:fragment="MainHeader">The GREATEST header in the UNIVERSE</h1>
 
 <footer th:fragment="footer">
+    <br>
+    <hr>
     <p>This is the footer partial! </p>
 </footer>
 

@@ -3,6 +3,7 @@ package com.example.codeup.springblog;
 import com.example.codeup.springblog.models.User;
 import com.example.codeup.springblog.repositories.UserRepository;
 import com.example.codeup.springblog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -80,17 +81,12 @@ public class PostController {
     }
 
 
+
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post newPost) {
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-//        Post post = new Post(title, body );
-//        load up the post and send it to the DB
-//        post.setTitle(title);
-//        post.setBody(body);
-
-//        postDao.save(post);
-        newPost.setUser(userDao.findById(1L).get());
-//        note: if the id associated already exists, .save will update that post
+        newPost.setUser(principal);
         postDao.save(newPost);
         System.out.println(newPost.toString());
         emailService.prepareAndSend(newPost, "New Post created");
