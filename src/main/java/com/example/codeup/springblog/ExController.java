@@ -25,14 +25,14 @@ public class ExController {
     return "search-results";
     }
 
-    @GetMapping("/login")
-    public String loginForm() {
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public String processLogin(@RequestParam String thePlace, Model XModel) {
-        XModel.addAttribute("city", thePlace);
-        return "favcity-result";
-    }
+//    @GetMapping("/login")
+//    public String loginForm() {
+//        return "login";
+//    }
+//
+//    @PostMapping("/login")
+//    public String processLogin(@RequestParam String thePlace, Model XModel) {
+//        XModel.addAttribute("city", thePlace);
+//        return "favcity-result";
+//    }
 }

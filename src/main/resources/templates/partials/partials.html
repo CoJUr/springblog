@@ -17,6 +17,41 @@
     <a href="/posts">See the posts</a>
 </nav>
 
+<nav th:fragment="nav3" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a href="/" class="navbar-brand">Spring Blog</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/posts">Posts</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/sign">Sign Up</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                <li>
+                    <form th:action="@{/logout}" th:method="post">
+                        <input type="submit" value="Logout">
+                        <button>Logout</button>
+                    </form>
+                </li>
+
+            </ul>
+        </div>
+
+
+    </div>
+
+</nav>
+
 <h1 th:fragment="MainHeader">The GREATEST header in the UNIVERSE</h1>
 
 <footer th:fragment="footer">
