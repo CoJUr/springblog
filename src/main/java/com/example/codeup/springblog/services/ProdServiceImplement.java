@@ -2,7 +2,7 @@
 //
 //import com.example.codeup.springblog.Domain.Author;
 //import com.example.codeup.springblog.Domain.ProductCategory;
-//import com.example.codeup.springblog.Product;
+//import com.example.codeup.springblog.models.Product;
 //import org.springframework.stereotype.Service;
 //
 //import java.util.ArrayList;

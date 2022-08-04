@@ -1,4 +1,4 @@
-package com.example.codeup.springblog.models;
+package com.example.codeup.springblog.model;
 
 import com.example.codeup.springblog.repositories.UserRepository;
 import org.springframework.security.core.GrantedAuthority;

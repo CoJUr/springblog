@@ -1,6 +1,6 @@
-package com.example.codeup.springblog;
+package com.example.codeup.springblog.repositories;
 
-import com.example.codeup.springblog.Product;
+import com.example.codeup.springblog.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -10,7 +10,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findProductByNameContaining(String str);
 
-//    derived queries
+//    derived queries - can create varied of methods which Hibernate will use to perform the query
     List<Product> getProductsByIdAfter(long id);
     List<Product> getProductByNameEndsWithIgnoreCase(String str);
 

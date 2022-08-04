@@ -1,6 +1,8 @@
-package com.example.codeup.springblog;
+package com.example.codeup.springblog.controllers;
 
-import com.example.codeup.springblog.models.User;
+import com.example.codeup.springblog.model.Post;
+import com.example.codeup.springblog.model.User;
+import com.example.codeup.springblog.repositories.PostRepository;
 import com.example.codeup.springblog.repositories.UserRepository;
 import com.example.codeup.springblog.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -109,6 +111,11 @@ public class PostController {
         return "posts/show";
     }
 
+    @PostMapping("/posts/{id}/delete")
+    public String deletePost(@PathVariable long id) {
+        postDao.deleteById(id);
+        return "redirect:/posts";
+    }
 
 
 }

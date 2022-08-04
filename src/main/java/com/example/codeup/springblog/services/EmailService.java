@@ -1,6 +1,6 @@
 package com.example.codeup.springblog.services;
 
-import com.example.codeup.springblog.Post;
+import com.example.codeup.springblog.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
@@ -29,7 +29,6 @@ public class EmailService {
 
         try {
             this.emailSender.send(msg);
-
         } catch(MailException mex) {
             System.out.println(mex.getMessage());
         }

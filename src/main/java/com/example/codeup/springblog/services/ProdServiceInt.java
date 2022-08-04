@@ -1,6 +1,6 @@
 //package com.example.codeup.springblog.services;
 //
-//import com.example.codeup.springblog.Product;
+//import com.example.codeup.springblog.models.Product;
 //
 //import java.util.List;
 //

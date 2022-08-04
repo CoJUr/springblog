@@ -1,9 +1,4 @@
-package com.example.codeup.springblog.models;
-
-import com.example.codeup.springblog.Post;
-import com.example.codeup.springblog.models.Ad;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+package com.example.codeup.springblog.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
