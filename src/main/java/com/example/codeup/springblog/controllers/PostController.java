@@ -31,25 +31,16 @@ public class PostController {
     public String returnIndex(Model model) {
         List<Post> postsList = new ArrayList<>();
 
-//                new ArrayList<>(Arrays.asList(
-//                new Post("Selling junk", 1, "This is a post about selling junk"),
-//                new Post("Buying junk", 2, "This is a post about buying junk"),
-//                new Post("Will work for food", 3, "This is a post about working for food")
-//        ));
-
         postsList = postDao.findAll();
         model.addAttribute("posts", postsList);
         return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
-    public String returnID(@PathVariable long id, Model model) {
+    public String returnID(@PathVariable long id, Model vModel) {
 
         Post post = postDao.findById(id).get();
-        model.addAttribute("id", id);
-        model.addAttribute("post", post);
-
-        System.out.println(postDao.findById(3L).get());
+        vModel.addAttribute("post", post);
         return "posts/show";
     }
 
@@ -62,18 +53,18 @@ public class PostController {
         model.addAttribute("id", id);
         model.addAttribute("post", post);
 
-        return "redirect:/posts/{id}";
-    }
-    @PostMapping("/posts/{id}/edit")
-    public String executeEditForm(@ModelAttribute Post post, @PathVariable long id) {
-
-        User user = userDao.findById(1L).get();
-        post.setUser(user);
-        postDao.save(post);
-
         return "posts/edit";
     }
+    @PostMapping("/posts/{id}/edit")
+    public String executeEditForm(@ModelAttribute Post post) {
 
+        Post postToUpdate = postDao.findById(post.getId()).get();
+        postToUpdate.setTitle(post.getTitle()); //update title of post
+        postToUpdate.setBody(post.getBody()); //update body of post
+
+        postDao.save(postToUpdate);
+        return "posts/edit";
+    }
 
 
     @GetMapping("/posts/create")
@@ -81,16 +72,13 @@ public class PostController {
         model.addAttribute("newPost", new Post());
         return "posts/create";
     }
-
-
-
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post newPost) {
         User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         newPost.setUser(principal);
         postDao.save(newPost);
-        System.out.println(newPost.toString());
+
         emailService.prepareAndSend(newPost, "New Post created");
         return "redirect:/posts";
     }
@@ -104,8 +92,6 @@ public class PostController {
             else throw new NoSuchElementException();
         } catch (NoSuchElementException e) {
 
-//            throw new NoSuchElementException("No post found with id: " + id);
-//            alert('No post found with id: ' + id);
             return "redirect:/posts";
         }
         return "posts/show";
