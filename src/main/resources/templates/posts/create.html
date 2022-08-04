@@ -9,20 +9,22 @@
 
 <h1>Create a post</h1>
 
-<form th:action="@{/posts/create}" th:object="${newPost}" method="post">
-    <fieldset>
-
-        <legend> Post details:</legend>
-        <label for="title">Title</label>
-        <input th:field="*{title}" type="text" name="title" id="title">
-        <br><br>
-        <label for="body">Content</label>
-        <br>
-        <textarea th:field="*{body}" name="body" id="body" cols="25" rows="20"></textarea>
-        <input type="submit" value="submit">
-    </fieldset>
-</form>
-
+<main class="container">
+    <form th:action="@{/posts/create}" th:method="POST" th:object="${newPost}">
+        <div class="mb-3">
+            <label class="form-label" for="title">Title</label>
+            <input th:field="*{title}" class="form-control" id="title" type="text" name="title" placeholder="Enter post title">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="body">Body</label>
+            <textarea th:field="*{body}" class="form-control" id="body" name="body" placeholder="Enter body of text"></textarea>
+        </div>
+        <div class="d-grid">
+            <button class="btn btn-dark btn-block">Create Post</button>
+        </div>
+    </form>
+    <th:block th:replace="partials/partials.html :: scripts"></th:block>
+</main>
 
 </body>
 </html>
