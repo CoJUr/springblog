@@ -102,7 +102,7 @@ public class PostsIntegrationTests {
 
         // Makes a Get request to /posts/{id} and expect a redirection to the Post show page
         this.mvc.perform(get("/posts/" + existingPost.getId())
-                .session((MockHttpSession) httpSession)) // added the session to the request for viewing post functionality - must be logged in to view post
+                .session((MockHttpSession) httpSession)) // added the session to request for viewing post functionality - must be logged in to view post
                 .andExpect(status().isOk())
                 // Test the dynamic content of the page
                 .andExpect(content().string(containsString(existingPost.getBody())));

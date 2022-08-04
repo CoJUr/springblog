@@ -63,10 +63,11 @@ public class PostController {
         postToUpdate.setBody(post.getBody()); //update body of post
 
         postDao.save(postToUpdate);
-        return "posts/edit";
+        return "redirect:/posts";
     }
 
 
+//    post creating functionality
     @GetMapping("/posts/create")
     public String viewCreationForm(Model model) {
         model.addAttribute("newPost", new Post());
@@ -83,7 +84,8 @@ public class PostController {
         return "redirect:/posts";
     }
 
-//    post read functionality
+
+//    post read/view functionality
     @GetMapping("/posts/read/{id}")
     public String readPost(@PathVariable long id, Model model) throws NoSuchElementException {
         try{
@@ -97,6 +99,7 @@ public class PostController {
         return "posts/show";
     }
 
+//    deletion functionality
     @PostMapping("/posts/{id}/delete")
     public String deletePost(@PathVariable long id) {
         postDao.deleteById(id);
