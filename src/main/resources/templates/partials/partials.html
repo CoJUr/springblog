@@ -6,6 +6,7 @@
     <title th:text="${'My Blog | ' + title}"></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/main.css">
 </head>
 
@@ -13,25 +14,10 @@
     <h1 class="text-center display-4 my-4" th:text="${text}"></h1>
 </header>
 
-<!--<head th:fragment=""></head>-->
-
-<nav th:fragment="nav">
-    <a href="/home">Home</a>
-    <a href="/posts">Posts</a>
-    <a href="/about-us">About us</a>
-</nav>
-
-<nav th:fragment="nav2">
-    <a href="/roll-dice">Roll-Dice page</a>
-    <a href="/products">See some products</a>
-    <a href="/posts">See the posts</a>
-</nav>
-
-<nav th:fragment="nav3" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav th:fragment="nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a href="/" class="navbar-brand">Spring Blog</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                ariat-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="/">Spring Blog</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -39,43 +25,30 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/posts">Posts</a>
                 </li>
-
-                <li sec:authorize="isAuthenticated()" class="nav-item">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
                     <a class="nav-link" href="/posts/create">Write Post</a>
                 </li>
-
-                <li sec:authorize="!isAuthenticated()" class="nav-item">
-                    <a class="nav-link" href="/sign">Sign Up</a>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/map}">Map Example</a>
                 </li>
-                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a class="nav-link" href="/sign-up">Sign up</a>
+                </li>
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
                     <a class="nav-link" href="/login">Login</a>
                 </li>
-<!--                <li sec:authorize="!isAuthenticated()" class="navi-item">-->
-<!--                    <a class="nav-link" href="/logout">Logout</a>-->
-<!--                </li>-->
                 <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <form th:action="@{/logout}" th:method="post">
-                        <button type="button">Logout</button>
-                    </form>
+                    <a class="nav-link" id="logout-link" href="#">Logout</a>
+                    <form id="logout-form" th:action="@{/logout}" th:method="POST"></form>
                 </li>
-
             </ul>
         </div>
-
-
     </div>
-
 </nav>
 
-<h1 th:fragment="MainHeader">The GREATEST header in the UNIVERSE</h1>
-
 <footer th:fragment="footer">
-    <br>
-    <hr>
-    <p>This is the footer partial! </p>
+    <p>This is footer</p>
 </footer>
-
-<footer th:fragment="foota">!!!!ﬁ‹€• ∞ ™¡ £ ªºº •• ∞ § § ∞ªª ºº 100ººº¡¡¡¡⁄</footer>
 
 <th:block th:fragment="scripts">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
@@ -83,4 +56,5 @@
             crossorigin="anonymous"></script>
     <script src="/js/main.js"></script>
 </th:block>
+
 </html>

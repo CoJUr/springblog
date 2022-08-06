@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/partials.html :: head('Post Details')"></head>
 <body>
-<nav th:replace="partials/partials.html :: nav3"></nav>
+<nav th:replace="partials/partials.html :: nav"></nav>
 <header th:replace="partials/partials.html :: header(${post.title})"></header>
 <main class="container">
     <p th:text="${post.body}"></p>

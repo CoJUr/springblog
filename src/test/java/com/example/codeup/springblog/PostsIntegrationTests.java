@@ -154,4 +154,26 @@ public class PostsIntegrationTests {
         assertNotNull(httpSession);
     }
 
+//    test editing functionality
+    @Test
+    public void testEditPost() throws Exception {
+        // Gets the first Ad for tests purposes
+        Post existingPost = postDao.findAll().get(0);
+
+        // Makes a Post request to /posts/{id}/edit and expect a redirection to the Post show page
+        this.mvc.perform(
+                        post("/posts/" + existingPost.getId() + "/edit").with(csrf())
+                                .session((MockHttpSession) httpSession)
+                                .param("title", "edited title")
+                                .param("body", "edited body"))
+                .andExpect(status().is3xxRedirection());
+
+        // Makes a GET request to /posts/{id} and expect a redirection to the Post show page
+        this.mvc.perform(get("/posts/" + existingPost.getId()))
+                .andExpect(status().isOk())
+                // Test the dynamic content of the page
+                .andExpect(content().string(containsString("edited title")))
+                .andExpect(content().string(containsString("edited body")));
+    }
+
 }

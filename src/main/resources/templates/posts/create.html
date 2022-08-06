@@ -1,14 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/partials.html :: head('Create a post')">
-    <meta charset="UTF-8">
-    <title>Creation!</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/partials.html :: head('Create Post')"></head>
 <body>
-<header th:insert="partials/partials.html :: header('Create a post')"></header>
-
-<h1>Create a post</h1>
-
+<nav th:replace="partials/partials.html :: nav"></nav>
+<header th:replace="partials/partials.html :: header('Add a Post')"></header>
 <main class="container">
     <form th:action="@{/posts/create}" th:method="POST" th:object="${newPost}">
         <div class="mb-3">
@@ -25,6 +20,5 @@
     </form>
     <th:block th:replace="partials/partials.html :: scripts"></th:block>
 </main>
-
 </body>
 </html>
