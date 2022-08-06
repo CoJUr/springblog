@@ -36,26 +36,27 @@ public class SecurityConfiguration {
         http
                 /* Login configuration */
                 .formLogin()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/posts") // user's home page, it can be any URL
-                    .permitAll() // Anyone can go to the login page
+                .loginPage("/login")
+                .defaultSuccessUrl("/posts") // user's home page, it can be any URL
+                .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
-                    .logout()
-                    .logoutSuccessUrl("/login?logout") // append a query string value
+                .logout()
+                .logoutSuccessUrl("/login?logout") // append a query string value
                 /* Pages that can be viewed without having to log in */
                 .and()
-                    .authorizeRequests()
-                    .antMatchers("/", "/posts", "/sign-up") // anyone can see the home and the ads pages
-                    .permitAll()
+                .authorizeRequests()
+                .antMatchers("/", "/posts", "/signup") // anyone can see the home and the ads pages
+                .permitAll()
                 /* Pages that require authentication */
                 .and()
-                    .authorizeRequests()
-                    .antMatchers(
+                .authorizeRequests()
+                .antMatchers(
                         "/posts/create", // only authenticated users can create ads
-                        "/posts/{id}" // only authenticated users can see full ads
-                    )
-                    .authenticated();
+                        "/posts/{id}/edit" // only authenticated users can edit ads
+                )
+                .authenticated()
+        ;
         return http.build();
     }
 
