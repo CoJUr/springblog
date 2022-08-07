@@ -1,5 +1,7 @@
 package com.example.codeup.springblog.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,9 @@ public class Post {
 
     @Column(nullable=true, columnDefinition = "VARCHAR(255)")
     private String body;
+
+//    file upload functionality
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")
