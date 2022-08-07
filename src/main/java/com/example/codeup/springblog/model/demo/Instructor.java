@@ -2,6 +2,7 @@ package com.example.codeup.springblog.model.demo;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "instructor")
@@ -19,10 +20,18 @@ public class Instructor {
     @Column(name = "email") private String email;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.REMOVE})
+//map to instructor_detail table
 //    joining on own FK column
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
-//map to instructor_detail table
+
+
+//    default fetch type of one to many AND many to many is LAZY
+    @OneToMany(fetch = FetchType.EAGER,
+            mappedBy = "instructor",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}
+    )
+    private List<Course> courses;
 
 
 
@@ -105,5 +114,13 @@ public class Instructor {
                 ", email='" + email + '\'' +
                 ", instructorDetail=" + instructorDetail +
                 '}';
+    }
+
+    public String getCourses() {
+        StringBuilder sb = new StringBuilder();
+        for (Course course : courses) {
+            sb.append(course.getTitle() + " ");
+        }
+        return sb.toString();
     }
 }
