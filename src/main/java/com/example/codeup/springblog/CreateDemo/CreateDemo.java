@@ -10,7 +10,18 @@ import org.springframework.context.annotation.Configuration;
 import org.hibernate.Session;
 public class CreateDemo {
 
+
+
     public static void main(String[] args) {
+
+        Instructor tempInstructor = new Instructor("John", "Doe", "did@dod.com");
+        InstructorDetail tempInstructorDetail = new InstructorDetail("http://www.subscribepls/youtube", "selling out");
+
+//        associate the object in memory
+        tempInstructor.setInstructorDetail(tempInstructorDetail);
+
+//        save the tempInstructor to the database... which also saves the details object due to CascadeType.ALL
+        session.save(tempInstructor);
 
 //        create session factory
         SessionFactory sessionFactory = new Configuration()
@@ -19,4 +30,5 @@ public class CreateDemo {
                 .addAnnotatedClass(InstructorDetail.class)
                 .buildSessionFactory();
     }
+
 }

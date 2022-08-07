@@ -91,7 +91,7 @@ public class Instructor {
 
 
 
-    private void setInstructorDetail(InstructorDetail tempInstructorDetail) {
+    public void setInstructorDetail(InstructorDetail tempInstructorDetail) {
         this.instructorDetail = tempInstructorDetail;
     }
 
