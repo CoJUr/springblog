@@ -1,10 +1,21 @@
-package com.example.codeup.springblog.model;
+package com.example.codeup.springblog.model.demo;
 
 import javax.persistence.*;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "instructor_detail")
 public class InstructorDetail {
+    @Override
+    public String toString() {
+        return "InstructorDetail{" +
+                "id=" + id +
+                ", youtubeChannel='" + youtubeChannel + '\'' +
+                ", hobby='" + hobby + '\'' +
+                '}';
+    }
+
+    //    one to one relationship with instructor
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -18,6 +29,10 @@ public class InstructorDetail {
         this.id = id;
         this.youtubeChannel = youtubeChannel;
         this.hobby = hobby;
+    }
+
+    public InstructorDetail() {
+
     }
 
     public Long getId() {

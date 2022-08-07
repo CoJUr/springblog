@@ -1,6 +1,7 @@
-package com.example.codeup.springblog.model;
+package com.example.codeup.springblog.model.demo;
 
 import javax.persistence.*;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "instructor")
@@ -10,6 +11,7 @@ public class Instructor {
     @Column(name = "id", nullable = false)
     private Long id;
 
+
     @Column(name = "first_name", nullable = false) private String firstName;
 
     @Column(name = "last_name", nullable = false) private String lastName;
@@ -17,30 +19,24 @@ public class Instructor {
     @Column(name = "email") private String email;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.REMOVE})
-    @JoinColumn(name = "instructor_detail_id") private InstructorDetail instructorDetail;
+//    joining on own FK column
+    @JoinColumn(name = "instructor_detail_id")
+    private InstructorDetail instructorDetail;
+//map to instructor_detail table
 
-    public Instructor(Long id, String firstName, String lastName, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
+
 
     public Instructor() {
     }
 
-    public Instructor(String firstName, String lastName, String email, InstructorDetail instructorDetail) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.instructorDetail = instructorDetail;
-    }
 
     public Instructor(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
+
+
 
     public Long getId() {
         return id;
@@ -74,28 +70,40 @@ public class Instructor {
         this.email = email;
     }
 
-    public static void main(String[] args) {
-        Instructor tempInstructor = new Instructor( "John", "Doe", "john@doe.com");
-        InstructorDetail tempInstructorDetail = new InstructorDetail("http://www.subscribepls/youtube", "selling out");
+//    public static void main(String[] args) {
+//        Instructor tempInstructor = new Instructor( "John", "Doe", "john@doe.com");
+//        InstructorDetail tempInstructorDetail = new InstructorDetail("http://www.subscribepls/youtube", "selling out");
 
 //        associate the objs
-        tempInstructor.setInstructorDetail(tempInstructorDetail);
-
-//        start transaction
-        session.beginTransaction();
-
-        session.save(tempInstructor);
-
-//        persist the objs
-        session.getTransaction().commit();
-
-
-    }
+//        tempInstructor.setInstructorDetail(tempInstructorDetail);
+//
+////        start transaction
+//
+//        session.beginTransaction();
+//
+//        session.save(tempInstructor);
+//
+////        persist the objs
+//        session.getTransaction().commit();
+//
+//    }
 
 
 
 
     private void setInstructorDetail(InstructorDetail tempInstructorDetail) {
         this.instructorDetail = tempInstructorDetail;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Instructor{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", instructorDetail=" + instructorDetail +
+                '}';
     }
 }
