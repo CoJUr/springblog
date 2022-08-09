@@ -1,13 +1,7 @@
 package com.example.codeup.springblog.model.demo;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "courses")
@@ -25,6 +19,12 @@ public class Course {
             CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
+
+//    cascade all to delete reviews when course is deleted
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+//    join is for a unidirectional oneToMany relationship, so foreign key is on the other side. if it were bidirectional, the FK would be in the join table
+    @JoinColumn(name = "course_id")
+    private List<Review> reviews;
 
     public Course() {}
 
@@ -68,5 +68,22 @@ public class Course {
                 ", title='" + title + '\'' +
                 ", instructor=" + instructor +
                 '}';
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+//    convenience method to add reviews to list
+    public void addReview(Review tempReview) {
+
+        if (reviews == null) {
+            reviews = new ArrayList<>();
+        }
+        reviews.add(tempReview);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.codeup.springblog.controllers;
+package com.example.codeup.springblog.controllers.sfg;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

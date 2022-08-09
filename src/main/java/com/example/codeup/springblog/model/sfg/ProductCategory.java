@@ -1,4 +1,4 @@
-package com.example.codeup.springblog.Domain;
+package com.example.codeup.springblog.model.sfg;
 
 public class ProductCategory {
 

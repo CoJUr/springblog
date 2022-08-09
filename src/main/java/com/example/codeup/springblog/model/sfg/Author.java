@@ -1,17 +1,10 @@
-package com.example.codeup.springblog.Domain;
+package com.example.codeup.springblog.model.sfg;
 
 public class Author {
-
     private Integer id;
     private String firstName;
     private String lastName;
     private String image;
-
-    public Author() {
-    }
-
-    public Author(String firstName, String lastName) {
-    }
 
     public Integer getId() {
         return id;
