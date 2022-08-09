@@ -138,13 +138,39 @@
     </div>
 
     <div class="row course-list list">
+        <div class="row course-list list">
+            <div th:each="product,it : ${products}">
+                <div th:if="${(it.count gt 0 and it.count lt 4)}">
+                    <div th:replace="fragments/productdiv :: productdiv">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+
+        <tr th:each="product : ${products}">
+            <td th:text="${prodct.id}"></td>
+            <td th:text="${prodct.courseName}"></td>
+
+        </tr>
+
+    </table>
+
+    <div class="row course-list list"  th:remove="all">
 <!--        start of module -->
         <div class="col-md-4">
 <!--            12/3 = 4   so 3 blocks across     each block has a course-->
             <div class="course-listing">
                 <div class="row">
                     <!--                    <p style="background-color: red">whats this</p>-->
-                    <a href="/products">
+                    <a href="prod.html" th:href="@{'/product/'+${product.id}}" >
                         <div class="col-lg-12">
                             <div class="course-box-image-container">
                                 <img role="presentation" src="" class="course-box-image"/>
