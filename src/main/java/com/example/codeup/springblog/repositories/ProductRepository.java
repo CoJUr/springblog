@@ -10,9 +10,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findProductByNameContaining(String str);
 
-//    derived queries - can create varied of methods which Hibernate will use to perform the query
+//    derived queries - can create variety of methods which Hibernate will generate
     List<Product> getProductsByIdAfter(long id);
     List<Product> getProductByNameEndsWithIgnoreCase(String str);
+
+    Product getFirstByPriceInCents(int priceInCents);
 
 
 //    custom queries. JPQL to define more specific queries

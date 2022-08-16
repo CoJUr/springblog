@@ -8,9 +8,9 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "INT")
-    private Long id;
+    private long id;
 
-    @Column(nullable=true, columnDefinition = "VARCHAR(100)")
+    @Column(nullable=false, columnDefinition = "VARCHAR(100)", length = 100)
     private String name;
 
 
@@ -40,7 +40,7 @@ public class Product {
         this.priceInCents = priceInCents;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
